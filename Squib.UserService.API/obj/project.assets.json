@@ -8389,11 +8389,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.UserService.API\\Squib.UserService.API.csproj",
+      "projectUniqueName": "E:\\Git repo\\Squib-apis\\Squib.UserService.API\\Squib.UserService.API.csproj",
       "projectName": "Squib.UserService.API",
-      "projectPath": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.UserService.API\\Squib.UserService.API.csproj",
+      "projectPath": "E:\\Git repo\\Squib-apis\\Squib.UserService.API\\Squib.UserService.API.csproj",
       "packagesPath": "C:\\Users\\nisha\\.nuget\\packages\\",
-      "outputPath": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.UserService.API\\obj\\",
+      "outputPath": "E:\\Git repo\\Squib-apis\\Squib.UserService.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nisha\\AppData\\Roaming\\NuGet\\NuGet.Config",

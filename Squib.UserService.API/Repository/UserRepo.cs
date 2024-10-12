@@ -30,28 +30,22 @@ public async Task<List<UserDto>> GetUsers()
     {
         using var connection = new SqlConnection(_connectionString.MyDb);
         using var command = connection.CreateCommand();
-        command.CommandType = CommandType.Text;
-        command.CommandText = "SELECT * FROM UserDto_New"; // Ensure this query is correct
-        command.Connection = connection;
+        command.CommandType = CommandType.StoredProcedure;
+        command.CommandText = "sp_GetUsers";
         
-        // Open connection asynchronously
         await connection.OpenAsync();
-
-        // Execute reader asynchronously
         using var reader = await command.ExecuteReaderAsync();
         
-        while (await reader.ReadAsync()) // Asynchronous read
+        while (await reader.ReadAsync())
         {
             userData.Add(new UserDto
             {
-                Id = reader.GetInt32(0),          // Ensure this matches your UserDto structure
-                Email = reader.GetString(1),      // Ensure the column indices match
+                Id = reader.GetInt32(0),
+                Email = reader.GetString(1),
                 FirstName = reader.GetString(2),
                 LastName = reader.GetString(3)
             });
         }
-
-        // Log the number of users fetched
         _logger.LogInformation($"Total users fetched: {userData.Count}");
     }
     catch (Exception e)
@@ -64,56 +58,51 @@ public async Task<List<UserDto>> GetUsers()
 
 
 
-    public UserDto GetUserById(int id)
+
+public UserDto GetUserById(int id)
+{
+    UserDto UserData = null;
+    try
     {
-        UserDto UserData = null;
-        // Add logic to get user by id from the database
-        try
+        using var connection = new SqlConnection(_connectionString.MyDb);
+        using var command = connection.CreateCommand();
+        command.CommandType = CommandType.StoredProcedure;
+        command.CommandText = "sp_GetUserById";
+        command.Parameters.AddWithValue("@Id", id);
+        
+        connection.Open();
+        using var reader = command.ExecuteReader();
+        if (reader.Read())
         {
-            using var connection = new SqlConnection(_connectionString.MyDb);
-            using var commad = connection.CreateCommand();
-            commad.CommandType = CommandType.Text;
-            commad.CommandText = "SELECT * FROM UserDto_New WHERE Id = @Id";
-            commad.Parameters.AddWithValue("@Id", id);
-            commad.Connection = connection;
-            connection.Open();
-
-            using var reader = commad.ExecuteReader();
-            if (reader.Read())
+            UserData = new UserDto
             {
-                UserData = new UserDto
-                {
-                    Id = reader.GetInt32(0),
-                    Email = reader.GetString(1),
-                    FirstName = reader.GetString(2),
-                    LastName = reader.GetString(3)
-                };
-            }
-
+                Id = reader.GetInt32(0),
+                Email = reader.GetString(1),
+                FirstName = reader.GetString(2),
+                LastName = reader.GetString(3)
+            };
         }
-        catch (Exception e)
-        {
-
-            _logger.LogError($"{e.Message}\n{e.StackTrace}");
-        }
-
-
-        return UserData;
     }
-public  async Task<bool>  AddUser(UserDto user)
+    catch (Exception e)
+    {
+        _logger.LogError($"{e.Message}\n{e.StackTrace}");
+    }
+    return UserData;
+}
+
+public async Task<bool> AddUser(UserDto user)
 {
     try
     {
         using var connection = new SqlConnection(_connectionString.MyDb);
         using var command = connection.CreateCommand();
-        command.CommandType = CommandType.Text;
+        command.CommandType = CommandType.StoredProcedure;
+        command.CommandText = "sp_add_custom_user";
 
-        // Updated SQL command to exclude the ID column
-        command.CommandText = "INSERT INTO UserDto_New (Email, FirstName , LastName) VALUES (@Email, @FirstName,@LastName)";
         command.Parameters.AddWithValue("@Email", user.Email);
         command.Parameters.AddWithValue("@FirstName", user.FirstName);
         command.Parameters.AddWithValue("@LastName", user.LastName);
-        command.Connection = connection;
+
         await connection.OpenAsync();
         await command.ExecuteNonQueryAsync();
         return true;
@@ -126,20 +115,20 @@ public  async Task<bool>  AddUser(UserDto user)
 }
 
 
-    public bool UpdateUser(UserDto user)
+
+ public bool UpdateUser(UserDto user)
 {
     try
     {
         using var connection = new SqlConnection(_connectionString.MyDb);
         using var command = connection.CreateCommand();
-        
-        command.CommandType = CommandType.Text;
-        command.CommandText = "UPDATE UserDto_New SET Email = @Email, FirstName = @FirstName, LastName = @LastName WHERE Id = @Id";
-        
-        command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = user.Email ?? (object)DBNull.Value;
-        command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = user.FirstName ?? (object)DBNull.Value;
-        command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = user.LastName ?? (object)DBNull.Value;
-        command.Parameters.Add("@Id", SqlDbType.Int).Value = user.Id;
+        command.CommandType = CommandType.StoredProcedure;
+        command.CommandText = "sp_UpdateUser";
+
+        command.Parameters.AddWithValue("@Id", user.Id);
+        command.Parameters.AddWithValue("@Email", user.Email);
+        command.Parameters.AddWithValue("@FirstName", user.FirstName);
+        command.Parameters.AddWithValue("@LastName", user.LastName);
 
         connection.Open();
         int rowsAffected = command.ExecuteNonQuery();
@@ -154,26 +143,29 @@ public  async Task<bool>  AddUser(UserDto user)
 }
 
 
-    public bool DeleteUser(int id)
+
+public bool DeleteUser(int id)
+{
+    try
     {
-        // Add logic to delete user from the database
-        try
-        {
-            using var connection = new SqlConnection(_connectionString.MyDb);
-            using var command = connection.CreateCommand();
-            command.CommandType = CommandType.Text;
-            command.CommandText = "DELETE FROM UserDto_New WHERE Id = @Id";
-            command.Parameters.AddWithValue("@Id", id);
-            command.Connection = connection;
-            connection.Open();
-            command.ExecuteNonQuery();
-            return true;
-    }catch (Exception e){
+        using var connection = new SqlConnection(_connectionString.MyDb);
+        using var command = connection.CreateCommand();
+        command.CommandType = CommandType.StoredProcedure;
+        command.CommandText = "sp_DeleteUser";
+
+        command.Parameters.AddWithValue("@Id", id);
+
+        connection.Open();
+        command.ExecuteNonQuery();
+        return true;
+    }
+    catch (Exception e)
+    {
         _logger.LogError($"{e.Message}\n{e.StackTrace}");
         return false;
-    
     }
-    }
+}
+
 
     
 }

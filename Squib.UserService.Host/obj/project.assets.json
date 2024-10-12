@@ -10188,11 +10188,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.UserService.Host\\Squib.UserService.Host.csproj",
+      "projectUniqueName": "E:\\Git repo\\Squib-apis\\Squib.UserService.Host\\Squib.UserService.Host.csproj",
       "projectName": "Squib.UserService.Host",
-      "projectPath": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.UserService.Host\\Squib.UserService.Host.csproj",
+      "projectPath": "E:\\Git repo\\Squib-apis\\Squib.UserService.Host\\Squib.UserService.Host.csproj",
       "packagesPath": "C:\\Users\\nisha\\.nuget\\packages\\",
-      "outputPath": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.UserService.Host\\obj\\",
+      "outputPath": "E:\\Git repo\\Squib-apis\\Squib.UserService.Host\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nisha\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10210,8 +10210,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.UserService.API\\Squib.UserService.API.csproj": {
-              "projectPath": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.UserService.API\\Squib.UserService.API.csproj"
+            "E:\\Git repo\\Squib-apis\\Squib.UserService.API\\Squib.UserService.API.csproj": {
+              "projectPath": "E:\\Git repo\\Squib-apis\\Squib.UserService.API\\Squib.UserService.API.csproj"
             }
           }
         }

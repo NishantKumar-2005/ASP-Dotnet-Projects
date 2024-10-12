@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GbNWKB1Bk2Y=",
+  "dgSpecHash": "lbbH8/008SE=",
   "success": true,
-  "projectFilePath": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.UserService.Host\\Squib.UserService.Host.csproj",
+  "projectFilePath": "E:\\Git repo\\Squib-apis\\Squib.UserService.Host\\Squib.UserService.Host.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nisha\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\nisha\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "Q8qzFqXHVaFP9SELECMJPW6FzmRny7EBllxJyIGOyuU=",
+  "Hash": "yJfKFN9awReIH5Okp3oZ7BLzUri9XPYyxyaIGFLZSC0=",
   "Source": "Squib.UserService.Host",
   "BasePath": "_content/Squib.UserService.Host",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.UserService.API\\Squib.UserService.API.csproj",
+      "Identity": "E:\\Git repo\\Squib-apis\\Squib.UserService.API\\Squib.UserService.API.csproj",
       "Version": 2,
       "Source": "Squib.UserService.API",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
