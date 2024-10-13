@@ -47,6 +47,10 @@ public class ChatHub : Hub
 
     await base.OnDisconnectedAsync(exception);
 }
+public async Task SendTypingNotification(string groupName, string user)
+    {
+        await Clients.Group(groupName).SendAsync("UserTyping", user);
+    }
 
 
 
