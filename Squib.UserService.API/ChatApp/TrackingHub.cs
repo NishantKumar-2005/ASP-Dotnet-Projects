@@ -5,13 +5,13 @@ namespace Squib.UserService.API.ChatApp
 {
     public class TrackingHub : Hub
     {
-        // Broadcast location to all clients
+       
         public async Task SendLocation(string deviceId, double latitude, double longitude)
         {
             await Clients.All.SendAsync("ReceiveLocation", deviceId, latitude, longitude);
         }
 
-        // Broadcast location to a specific group
+        
         public async Task SendGroupLocation(string groupName, string deviceId, double latitude, double longitude)
         {
             await Clients.Group(groupName).SendAsync("ReceiveGroupLocation", deviceId, latitude, longitude);
