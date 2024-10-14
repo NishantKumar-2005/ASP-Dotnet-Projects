@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Squib.UserService.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d9b2e140ec1dc8b2e55b2b3ddbe2da98527bab1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c67669baaa5a91e6082783614005def66d7b7b55")]
 [assembly: System.Reflection.AssemblyProductAttribute("Squib.UserService.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Squib.UserService.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
