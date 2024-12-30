@@ -14,7 +14,10 @@ using Serilog;
 using Squib.UserService.API;
 using Squib.UserService.API.Profile;
 using Squib.UserService.API.Repository;
+using Squib.UserService.API.DB; // Ensure this is included
 using System.Text;
+using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Squib.UserService.Host
 {
@@ -29,6 +32,16 @@ namespace Squib.UserService.Host
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // var dbHost = Environment.GetEnvironmentVariable("DB_HOST")+".default.svc.cluster.local";
+            // var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
+            // var dbUser = Environment.GetEnvironmentVariable("DB_USER");
+            // var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+            var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+            Console.WriteLine($"Connection String: {connectionString}");
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
             services.AddLogging(opts =>
             {
                 opts.ClearProviders();
@@ -71,16 +84,11 @@ namespace Squib.UserService.Host
             //         };
             //     });
 
-            services.AddControllers();
-            services.AddDistributedRedisCache(options=>{
-                options.Configuration = "localhost:6379";
-            });
             services.AddAutoMapper(typeof(UserProfile).Assembly); // Adjust as necessary
-            services.AddScoped<IUserRepo, UserRepo>(); // Register your UserRepo
-
+            // services.AddScoped<IUserRepo, UserRepo>(); // Register your UserRepo
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -90,6 +98,8 @@ namespace Squib.UserService.Host
             {
                 app.UseHsts();
             }
+
+            context.Database.Migrate(); // Apply any pending migrations
 
             app.UseHttpsRedirection();
             app.UseRouting();

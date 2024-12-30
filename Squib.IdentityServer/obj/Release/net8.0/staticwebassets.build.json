@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "MCaJnx4TWpRlZOf0ujyxJ+m5E83XVJIB1wFxtuU3ITI=",
+  "Source": "Squib.IdentityServer",
+  "BasePath": "_content/Squib.IdentityServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

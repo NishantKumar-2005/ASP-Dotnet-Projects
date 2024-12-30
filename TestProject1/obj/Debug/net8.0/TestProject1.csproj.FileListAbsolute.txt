@@ -160,3 +160,13 @@ e:\college MSIT\Squib-apis\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1
 e:\college MSIT\Squib-apis\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1.dll
 e:\college MSIT\Squib-apis\Squib-apis\TestProject1\obj\Debug\net8.0\refint\TestProject1.dll
 e:\college MSIT\Squib-apis\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1.pdb
+E:\Git repo\Squib-apis\TestProject1\bin\Debug\net8.0\CoverletSourceRootsMapping_TestProject1
+E:\Git repo\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1.csproj.AssemblyReference.cache
+E:\Git repo\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1.GeneratedMSBuildEditorConfig.editorconfig
+E:\Git repo\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1.AssemblyInfoInputs.cache
+E:\Git repo\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1.AssemblyInfo.cs
+E:\Git repo\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1.csproj.CoreCompileInputs.cache
+E:\Git repo\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1.sourcelink.json
+E:\Git repo\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1.dll
+E:\Git repo\Squib-apis\TestProject1\obj\Debug\net8.0\refint\TestProject1.dll
+E:\Git repo\Squib-apis\TestProject1\obj\Debug\net8.0\TestProject1.pdb

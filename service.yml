@@ -1,0 +1,157 @@
+kind: Service
+apiVersion: v1
+metadata:
+  # Unique key of the Service instance
+  name: service-squib
+spec:
+  ports:
+    # Accept traffic sent to port 80
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    # Loadbalance traffic across Pods matching
+    # this label selector
+    app: deployment-Squib
+  # Create an HA proxy in the cloud provider
+  # with an External IP address - *Only supported
+  # by some cloud providers*
+  type: LoadBalancer
+
+
+
+
+
+
+
+
+
+
+
+
+#   # Squib.userhost Deployment
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: squib-userhost
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: squib-userhost
+#   template:
+#     metadata:
+#       labels:
+#         app: squib-userhost
+#     spec:
+#       containers:
+#       - name: squib-userhost
+#         image: nishant2015/chattrack:3
+#         ports:
+#         - containerPort: 5000
+#         volumeMounts:
+#         - name: appsettings
+#           mountPath: /app/appsettings.host.json
+#           subPath: appsettings.host.json
+#       volumes:
+#       - name: appsettings
+#         configMap:
+#           name: appsettings-configmap
+
+# ---
+
+# # SQL Server Deployment
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: sql-server
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: sql-server
+#   template:
+#     metadata:
+#       labels:
+#         app: sql-server
+#     spec:
+#       containers:
+#       - name: sql
+#         image: mcr.microsoft.com/mssql/server:2022-latest
+#         env:
+#         - name: ACCEPT_EULA
+#           value: "Y"
+#         - name: SA_PASSWORD
+#           value: "20150023291@Ns"
+#         ports:
+#         - containerPort: 1433
+#         volumeMounts:
+#         - name: sql-init
+#           mountPath: /docker-entrypoint-initdb.d
+#       volumes:
+#       - name: sql-init
+#         configMap:
+#           name: sql-init-scripts
+
+# ---
+
+# # ConfigMap for appsettings.host.json
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: appsettings-configmap
+# data:
+#   appsettings.host.json: |
+#     {
+#       "ConnectionStrings": {
+#         "MyDb": "Server=sql-server,1433;User Id=SA;Password=20150023291@Ns;TrustServerCertificate=True;"
+#       },
+#       "Logging": {
+#         "LogLevel": {
+#           "Default": "Information",
+#           "Microsoft": "Warning",
+#           "Microsoft.Hosting.Lifetime": "Information"
+#         }
+#       },
+#       "AllowedHosts": "*"
+#     }
+
+# ---
+
+# # ConfigMap for SQL Initialization Scripts
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: sql-init-scripts
+# data:
+#   init-tables.sql: |
+#     -- Create Users Table
+#     CREATE TABLE UserDto_New (
+#         Id INT PRIMARY KEY IDENTITY(1,1),
+#         Email NVARCHAR(100) NOT NULL UNIQUE,
+#         FirstName NVARCHAR(100) NOT NULL,
+#         LastName NVARCHAR(100) NOT NULL
+#     );
+
+#     -- Create Orders Table
+#     CREATE TABLE Orders (
+#         Id INT PRIMARY KEY IDENTITY(1,1),
+#         ProductName NVARCHAR(100) NOT NULL,
+#         Quantity INT NOT NULL,
+#         UserId INT FOREIGN KEY REFERENCES UserDto_New(Id)
+#     );
+
+# ---
+
+# # SQL Server Service
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: sql-server
+# spec:
+#   selector:
+#     app: sql-server
+#   ports:
+#   - protocol: TCP
+#     port: 1433
+#     targetPort: 1433

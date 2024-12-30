@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "r6ldsbA6UaW4j40KWGNgV6inAyNJtOqnxGzJVodJdtU=",
+  "Source": "Squib.UserService.API",
+  "BasePath": "_content/Squib.UserService.API",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

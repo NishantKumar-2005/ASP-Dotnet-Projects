@@ -6,13 +6,13 @@ namespace Squib.UserService.API.Repository;
 public interface IUserRepo
 {
     public Task<List<UserDto>> GetUsers();
-    public UserDto GetUserById(int id);
+    public Task<UserDto> GetUserById(int id);
 
     public Task<bool> AddUser(UserDto user);
 
-    public bool UpdateUser(UserDto user);
+    public Task<bool> UpdateUser(UserDto user);
 
-    public bool DeleteUser(int id);
+    public Task<bool> DeleteUser(int id);
 
    
 

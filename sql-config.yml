@@ -1,0 +1,7 @@
+# ConfigMap for connection string
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  ConnectionStrings__DefaultConnection: "Server=mssql-service;User Id=sa;Password=YourStrongPassword123!;TrustServerCertificate=True"

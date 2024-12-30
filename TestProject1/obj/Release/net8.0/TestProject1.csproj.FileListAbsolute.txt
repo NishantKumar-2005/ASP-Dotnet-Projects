@@ -1,0 +1,7 @@
+E:\Git repo\Squib-apis\TestProject1\bin\Release\net8.0\CoverletSourceRootsMapping_TestProject1
+E:\Git repo\Squib-apis\TestProject1\obj\Release\net8.0\TestProject1.csproj.AssemblyReference.cache
+E:\Git repo\Squib-apis\TestProject1\obj\Release\net8.0\TestProject1.GeneratedMSBuildEditorConfig.editorconfig
+E:\Git repo\Squib-apis\TestProject1\obj\Release\net8.0\TestProject1.AssemblyInfoInputs.cache
+E:\Git repo\Squib-apis\TestProject1\obj\Release\net8.0\TestProject1.AssemblyInfo.cs
+E:\Git repo\Squib-apis\TestProject1\obj\Release\net8.0\TestProject1.csproj.CoreCompileInputs.cache
+E:\Git repo\Squib-apis\TestProject1\obj\Release\net8.0\TestProject1.sourcelink.json

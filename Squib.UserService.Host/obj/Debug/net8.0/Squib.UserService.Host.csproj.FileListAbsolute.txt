@@ -303,3 +303,14 @@ E:\Git repo\Squib-apis\Squib.UserService.Host\obj\Debug\net8.0\refint\Squib.User
 E:\Git repo\Squib-apis\Squib.UserService.Host\obj\Debug\net8.0\Squib.UserService.Host.pdb
 E:\Git repo\Squib-apis\Squib.UserService.Host\obj\Debug\net8.0\Squib.UserService.Host.genruntimeconfig.cache
 E:\Git repo\Squib-apis\Squib.UserService.Host\obj\Debug\net8.0\ref\Squib.UserService.Host.dll
+E:\API\net8.0\Squib.UserService.API.deps.json
+E:\API\net8.0\Squib.UserService.API.runtimeconfig.json
+E:\API\net8.0\appsettings.json
+E:\API\net8.0\Squib.UserService.API.exe
+E:\API\net8.0\launchSettings.json
+E:\API\net8.0\Squib.UserService.Host.exe
+E:\API\net8.0\Squib.UserService.Host.deps.json
+E:\API\net8.0\Squib.UserService.Host.runtimeconfig.json
+E:\API\net8.0\Squib.UserService.Host.dll
+E:\API\net8.0\Squib.UserService.Host.pdb
+E:\API\net8.0\appsettings.host.json

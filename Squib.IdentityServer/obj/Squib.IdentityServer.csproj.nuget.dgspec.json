@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.IdentityServer\\Squib.IdentityServer.csproj": {}
+    "E:\\Git repo\\Squib-apis\\Squib.IdentityServer\\Squib.IdentityServer.csproj": {}
   },
   "projects": {
-    "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.IdentityServer\\Squib.IdentityServer.csproj": {
+    "E:\\Git repo\\Squib-apis\\Squib.IdentityServer\\Squib.IdentityServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.IdentityServer\\Squib.IdentityServer.csproj",
+        "projectUniqueName": "E:\\Git repo\\Squib-apis\\Squib.IdentityServer\\Squib.IdentityServer.csproj",
         "projectName": "Squib.IdentityServer",
-        "projectPath": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.IdentityServer\\Squib.IdentityServer.csproj",
+        "projectPath": "E:\\Git repo\\Squib-apis\\Squib.IdentityServer\\Squib.IdentityServer.csproj",
         "packagesPath": "C:\\Users\\nisha\\.nuget\\packages\\",
-        "outputPath": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.IdentityServer\\obj\\",
+        "outputPath": "E:\\Git repo\\Squib-apis\\Squib.IdentityServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nisha\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -100,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

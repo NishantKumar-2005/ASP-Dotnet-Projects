@@ -1,10 +1,23 @@
-﻿namespace Squib.UserService.API.Model;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public record class UserDto
+namespace Squib.UserService.API.Model;
+[Table("UserDto_New")]
+public class UserDto
 {
-    public int Id { get; init; }
-    public string? Email { get; init; }
-    public string? FirstName { get; init; }
-    public string? LastName { get; init; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Auto-increment
+    public int Id { get; set; }
 
+    [Required]
+    [StringLength(255)]
+    public string Email { get; set; }
+
+    [Required]
+    [StringLength(255)]
+    public string FirstName { get; set; }
+
+    [Required]
+    [StringLength(255)]
+    public string LastName { get; set; }
 }

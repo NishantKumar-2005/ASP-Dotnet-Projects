@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8H3eiAfiTbI=",
+  "dgSpecHash": "BHv7rD+E6xY=",
   "success": true,
-  "projectFilePath": "E:\\college MSIT\\Squib-apis\\Squib-apis\\Squib.IdentityServer\\Squib.IdentityServer.csproj",
+  "projectFilePath": "E:\\Git repo\\Squib-apis\\Squib.IdentityServer\\Squib.IdentityServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nisha\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\nisha\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

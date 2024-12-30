@@ -1,171 +1,131 @@
-﻿using System.Data;
-using AutoMapper;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using Squib.UserService.API.config;
-using Squib.UserService.API.model;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Squib.UserService.API.DB;
 using Squib.UserService.API.Model;
 using Squib.UserService.API.Repository;
+
 namespace Squib.UserService.API;
 
 public class UserRepo : IUserRepo
 {
     private readonly ILogger<UserRepo> _logger;
-    private readonly ConnectionString _connectionString;
+    private readonly ApplicationDbContext _context;
 
-    
-
-    public UserRepo(ILogger<UserRepo> logger, IOptions<ConnectionString> connectionStringOption )
+    public UserRepo(ILogger<UserRepo> logger, ApplicationDbContext context)
     {
         _logger = logger;
-        _connectionString = connectionStringOption.Value;
-        
+        _context = context;
     }
-public async Task<List<UserDto>> GetUsers()
-{
-    List<UserDto> userData = new List<UserDto>();
-    
-    try
+
+    public async Task<List<UserDto>> GetUsers()
     {
-        using var connection = new SqlConnection(_connectionString.MyDb);
-        using var command = connection.CreateCommand();
-        command.CommandType = CommandType.StoredProcedure;
-        command.CommandText = "sp_GetUsers";
-        
-        await connection.OpenAsync();
-        using var reader = await command.ExecuteReaderAsync();
-        
-        while (await reader.ReadAsync())
+        try
         {
-            userData.Add(new UserDto
-            {
-                Id = reader.GetInt32(0),
-                Email = reader.GetString(1),
-                FirstName = reader.GetString(2),
-                LastName = reader.GetString(3)
-            });
+            var users = await _context.UserDtos.ToListAsync();
+            _logger.LogInformation($"Total users fetched: {users.Count}");
+            return users;
         }
-        _logger.LogInformation($"Total users fetched: {userData.Count}");
-    }
-    catch (Exception e)
-    {
-        _logger.LogError($"{e.Message}\n{e.StackTrace}");
-    }
-
-    return userData;
-}
-
-
-
-
-public UserDto GetUserById(int id)
-{
-    UserDto UserData = null;
-    try
-    {
-        using var connection = new SqlConnection(_connectionString.MyDb);
-        using var command = connection.CreateCommand();
-        command.CommandType = CommandType.StoredProcedure;
-        command.CommandText = "sp_GetUserById";
-        command.Parameters.AddWithValue("@Id", id);
-        
-        connection.Open();
-        using var reader = command.ExecuteReader();
-        if (reader.Read())
+        catch (Exception e)
         {
-            UserData = new UserDto
-            {
-                Id = reader.GetInt32(0),
-                Email = reader.GetString(1),
-                FirstName = reader.GetString(2),
-                LastName = reader.GetString(3)
-            };
+            _logger.LogError($"{e.Message}\n{e.StackTrace}");
+            return new List<UserDto>();
         }
     }
-    catch (Exception e)
+
+    public async Task<UserDto> GetUserById(int id)
     {
-        _logger.LogError($"{e.Message}\n{e.StackTrace}");
-    }
-    return UserData;
-}
+        try
+        {
+            var user = await _context.UserDtos
+                .FirstOrDefaultAsync(u => u.Id == id);
 
-public async Task<bool> AddUser(UserDto user)
-{
-    try
+            if (user == null)
+            {
+                _logger.LogWarning($"User with ID {id} not found");
+            }
+
+            return user;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"{e.Message}\n{e.StackTrace}");
+            return null;
+        }
+    }
+
+    public async Task<bool> AddUser(UserDto user)
     {
-        using var connection = new SqlConnection(_connectionString.MyDb);
-        using var command = connection.CreateCommand();
-        command.CommandType = CommandType.StoredProcedure;
-        command.CommandText = "sp_add_custom_user";
-
-        command.Parameters.AddWithValue("@Email", user.Email);
-        command.Parameters.AddWithValue("@FirstName", user.FirstName);
-        command.Parameters.AddWithValue("@LastName", user.LastName);
-
-        await connection.OpenAsync();
-        await command.ExecuteNonQueryAsync();
-        return true;
+        try
+        {
+            await _context.UserDtos.AddAsync(user);
+            var result = await _context.SaveChangesAsync();
+            _logger.LogInformation($"User added successfully: {user.Email}");
+            return result > 0;
+        }
+        catch (DbUpdateException e)
+        {
+            _logger.LogError($"Database error while adding user: {e.Message}");
+            return false;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"Error adding user: {e.Message}\n{e.StackTrace}");
+            return false;
+        }
     }
-    catch (Exception e)
+
+    public async Task<bool> UpdateUser(UserDto user)
     {
-        _logger.LogError($"{e.Message}\n{e.StackTrace}");
-        return false;
+        try
+        {
+            var existingUser = await _context.UserDtos.FindAsync(user.Id);
+            if (existingUser == null)
+            {
+                _logger.LogWarning($"User with ID {user.Id} not found for update");
+                return false;
+            }
+
+            existingUser.Email = user.Email;
+            existingUser.FirstName = user.FirstName;
+            existingUser.LastName = user.LastName;
+
+            _context.UserDtos.Update(existingUser);
+            var result = await _context.SaveChangesAsync();
+            _logger.LogInformation($"User updated successfully: {user.Email}");
+            return result > 0;
+        }
+        catch (DbUpdateConcurrencyException e)
+        {
+            _logger.LogError($"Concurrency error while updating user: {e.Message}");
+            return false;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"Error updating user: {e.Message}\n{e.StackTrace}");
+            return false;
+        }
     }
-}
 
-
-
- public bool UpdateUser(UserDto user)
-{
-    try
+    public async Task<bool> DeleteUser(int id)
     {
-        using var connection = new SqlConnection(_connectionString.MyDb);
-        using var command = connection.CreateCommand();
-        command.CommandType = CommandType.StoredProcedure;
-        command.CommandText = "sp_UpdateUser";
+        try
+        {
+            var user = await _context.UserDtos.FindAsync(id);
+            if (user == null)
+            {
+                _logger.LogWarning($"User with ID {id} not found for deletion");
+                return false;
+            }
 
-        command.Parameters.AddWithValue("@Id", user.Id);
-        command.Parameters.AddWithValue("@Email", user.Email);
-        command.Parameters.AddWithValue("@FirstName", user.FirstName);
-        command.Parameters.AddWithValue("@LastName", user.LastName);
-
-        connection.Open();
-        int rowsAffected = command.ExecuteNonQuery();
-
-        return rowsAffected > 0;
+            _context.UserDtos.Remove(user);
+            var result = await _context.SaveChangesAsync();
+            _logger.LogInformation($"User deleted successfully: ID {id}");
+            return result > 0;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"Error deleting user: {e.Message}\n{e.StackTrace}");
+            return false;
+        }
     }
-    catch (Exception e)
-    {
-        _logger.LogError($"{e.Message}\n{e.StackTrace}");
-        return false;
-    }
-}
-
-
-
-public bool DeleteUser(int id)
-{
-    try
-    {
-        using var connection = new SqlConnection(_connectionString.MyDb);
-        using var command = connection.CreateCommand();
-        command.CommandType = CommandType.StoredProcedure;
-        command.CommandText = "sp_DeleteUser";
-
-        command.Parameters.AddWithValue("@Id", id);
-
-        connection.Open();
-        command.ExecuteNonQuery();
-        return true;
-    }
-    catch (Exception e)
-    {
-        _logger.LogError($"{e.Message}\n{e.StackTrace}");
-        return false;
-    }
-}
-
-
-    
 }

@@ -1,10 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Squib.IdentityServer",
-    "\\Squib.IdentityServer\\Properties",
-    "\\Squib.UserService.Host",
-    "\\Squib.UserService.Host\\Controllers"
+    "\\Squib.UserService.API",
+    "\\Squib.UserService.API\\DB",
+    "\\Squib.UserService.Host"
   ],
+  "SelectedNode": "\\Squib.UserService.API\\Startup.cs",
   "PreviewInSolutionExplorer": false
 }

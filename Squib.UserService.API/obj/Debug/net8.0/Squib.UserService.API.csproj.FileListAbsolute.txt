@@ -240,3 +240,9 @@ E:\Git repo\Squib-apis\Squib.UserService.API\obj\Debug\net8.0\refint\Squib.UserS
 E:\Git repo\Squib-apis\Squib.UserService.API\obj\Debug\net8.0\Squib.UserService.API.pdb
 E:\Git repo\Squib-apis\Squib.UserService.API\obj\Debug\net8.0\Squib.UserService.API.genruntimeconfig.cache
 E:\Git repo\Squib-apis\Squib.UserService.API\obj\Debug\net8.0\ref\Squib.UserService.API.dll
+E:\API\net8.0\appsettings.json
+E:\API\net8.0\Squib.UserService.API.exe
+E:\API\net8.0\Squib.UserService.API.deps.json
+E:\API\net8.0\Squib.UserService.API.runtimeconfig.json
+E:\API\net8.0\Squib.UserService.API.dll
+E:\API\net8.0\Squib.UserService.API.pdb

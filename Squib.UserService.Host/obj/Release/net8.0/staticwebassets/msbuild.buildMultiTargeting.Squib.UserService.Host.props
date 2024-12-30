@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Squib.UserService.Host.props" />
+</Project>

@@ -22,7 +22,7 @@ namespace Squib.UserService.Host
                     webBuilder
                         .ConfigureAppConfiguration((_, config) =>
                         {
-                            config.AddJsonFile("appsettings.json", true, true);
+                            config.AddJsonFile("appsettings.host.json", true, true);
                         })
                         .UseStartup<Startup>();
                 });

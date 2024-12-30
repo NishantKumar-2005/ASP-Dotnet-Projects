@@ -9,10 +9,10 @@ namespace Squib.UserService.API
         public static IServiceCollection AddSquibUserService(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<ConnectionString>(configuration.GetSection("ConnectionStrings"));
-            services.AddSingleton<IUserRepo, UserRepo>();
-            services.AddSingleton<IUSER_Service, UserServi>();
-            services.AddSingleton<IORDER_Service,OrderServi>();
-            services.AddSingleton<IOrderRepo,OrderRepo>();
+            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IUSER_Service, UserServi>();
+            services.AddScoped<IORDER_Service,OrderServi>();
+            services.AddScoped<IOrderRepo,OrderRepo>();
             // services.AddSingleton<IHubContext<TrackingHub>, HubContext<TrackingHub>>();
             return services;
         }
