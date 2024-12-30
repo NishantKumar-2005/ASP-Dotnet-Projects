@@ -26,16 +26,14 @@ jobs:
       - name: Install Kubescape
         run: |
           curl -s https://raw.githubusercontent.com/kubescape/kubescape/master/install.sh | /bin/bash
-          echo "export PATH=$PATH:/home/runner/.kubescape/bin" >> $GITHUB_ENV
+          
 
       - name: Verify Kubescape Installation
         run: |
-          source $GITHUB_ENV
-          kubescape version
+          echo "PATH=/home/runner/.kubescape/bin:$PATH" >> $GITHUB_ENV
 
       - name: Run Kubescape
         run: |
-          source $GITHUB_ENV
           kubescape scan framework nsa --exclude-namespaces kube-system,kube-public
 
       - name: Print Job Status
