@@ -29,6 +29,11 @@ jobs:
       - name: Install Kubescape
         run: curl -s https://raw.githubusercontent.com/kubescape/kubescape/master/install.sh | /bin/bash
 
+      - name: Add Kubescape to PATH
+        run: |
+          echo "export PATH=$PATH:/usr/local/bin" >> $GITHUB_ENV
+
+
       - name: Verify Kubescape Installation
         run: kubescape version
 
