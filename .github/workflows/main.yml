@@ -23,22 +23,20 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: List files in the repository
-        run: ls ${{ github.workspace }}
-
       - name: Install Kubescape
-        run: curl -s https://raw.githubusercontent.com/kubescape/kubescape/master/install.sh | /bin/bash
+        run: |
+          curl -s https://raw.githubusercontent.com/kubescape/kubescape/master/install.sh | /bin/bash
+          echo "export PATH=$PATH:/home/runner/.kubescape/bin" >> $GITHUB_ENV
 
-      # - name: Add Kubescape to PATH
-      #   run: |
-      #     echo "export PATH=$PATH:/usr/local/bin" >> $GITHUB_ENV
-
-
-      # - name: Verify Kubescape Installation
-      #   run: kubescape version
+      - name: Verify Kubescape Installation
+        run: |
+          source $GITHUB_ENV
+          kubescape version
 
       - name: Run Kubescape
-        run: kubescape scan framework nsa
+        run: |
+          source $GITHUB_ENV
+          kubescape scan framework nsa --exclude-namespaces kube-system,kube-public
 
       - name: Print Job Status
         run: echo "🍏 This job's status is ${{ job.status }}."
