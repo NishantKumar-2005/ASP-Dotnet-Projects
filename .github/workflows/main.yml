@@ -34,7 +34,7 @@ jobs:
 
       - name: Run Kubescape
         run: |
-          kubescape scan framework nsa --exclude-namespaces kube-system,kube-public
+          kubescape scan framework nsa *yml
 
       - name: Print Job Status
         run: echo "🍏 This job's status is ${{ job.status }}."
