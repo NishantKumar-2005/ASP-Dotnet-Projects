@@ -20,9 +20,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - name: Install Kubescape
-        run: |
-          curl -sfL https://get.kubescape.com | sh
+        run: curl -s https://raw.githubusercontent.com/kubescape/kubescape/master/install.sh | /bin/bash
       - name: Run Kubescape
-        run: |
-          kubescape scan framework nsa --exclude-namespaces kube-system,kube-public,kube-node-lease,kube-federation-system,kube-system,istio-system,istio-operator,istio-injection,istio-galley,istio-pilot,istio-policy,istio-telemetry,istio-egressgateway,istio-ingressgateway,istio-tracing,istio-citadel,istio-sidecar-injector,istio-security
+        run: kubescape scan framework nsa --exclude-namespaces kube-system,kube-public
       - run: echo "🍏 This job's status is ${{ job.status }}."
