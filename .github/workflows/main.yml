@@ -34,7 +34,7 @@ jobs:
 
       - name: Run Kubescape
         run: |
-          kubescape scan framework nsa -t 80 *yml
+          kubescape scan framework nsa --compliance-threshold 80 *yml
 
       - name: Print Job Status
         run: echo "🍏 This job's status is ${{ job.status }}."
