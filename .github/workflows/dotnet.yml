@@ -22,7 +22,7 @@ jobs:
         dotnet-version: 8.0.x
     - name: Change Directory
       run:  |
-        
+        sudo mkdir /API
         sudo chmod -R u+w /API
         sudo chown -R $(whoami) /API
         cd ./Squib.UserService.Host

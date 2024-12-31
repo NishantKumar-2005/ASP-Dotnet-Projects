@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Squib.UserService.Host")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a8930baa7866f02d2cd0160beba0b489e176df7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd6678bb8701f36b6522a654b768fd910fc56936")]
 [assembly: System.Reflection.AssemblyProductAttribute("Squib.UserService.Host")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Squib.UserService.Host")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

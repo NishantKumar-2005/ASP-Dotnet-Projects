@@ -4,10 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
-  <BaseOutputPath>bin\Debug\net8.0</BaseOutputPath>
-</PropertyGroup>
-  <PropertyGroup>
-    <OutputPath>$(BaseOutputPath)\API\</OutputPath>
+  <OutputPath>bin\Debug\net8.0\API\</OutputPath>
 </PropertyGroup>
 
 
