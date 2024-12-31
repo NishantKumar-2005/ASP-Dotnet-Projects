@@ -24,9 +24,10 @@ jobs:
       run: dotnet restore
     - name: Change Directory
       run:  |
-        cd ./Squib.UserService.Host
+        
         sudo chmod -R u+w /API
         sudo chown -R $(whoami) /API
+        cd ./Squib.UserService.Host
 
     - name: Build
       run: |
