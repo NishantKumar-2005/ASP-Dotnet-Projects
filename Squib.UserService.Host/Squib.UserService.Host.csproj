@@ -5,7 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
   <BaseOutputPath>bin\Debug\net8.0</BaseOutputPath>
-</PropertyGroup>
+</PropertyGroup>Ou
   <PropertyGroup>
     <OutputPath>$(BaseOutputPath)\API\</OutputPath>
 </PropertyGroup>
